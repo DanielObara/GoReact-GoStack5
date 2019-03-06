@@ -31,7 +31,14 @@ class App extends Component {
   };
 
   handleClick = () => {
-    this.setState({ counter: this.state.counter + 1 });
+    //o SetState é assincrona então ele leva um tempo para ser efetuado
+    // this.setState({ counter: this.state.counter + 1 });
+    //se colocassemos o console.log aqui ele apresentaria ainda o 0 pois ainda não foi atualizado o estado.
+
+    /* 
+      Desta forma o state passado como parametro é alterado automaticamente.
+    */
+    this.setState(state => ({ counter: state.counter + 1 }));
   };
 
   render() {
