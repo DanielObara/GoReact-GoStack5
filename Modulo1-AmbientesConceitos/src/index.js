@@ -7,6 +7,19 @@ class App extends Component {
     counter: 0
   };
 
+  //Executa na inicialização do componente
+  //Ideal para consulta API e EventListners
+  componentDidMount() {}
+
+  //Contrario do DidMount, ideal para limpar os eventListners etc.
+  componentWillUnmount = () => {};
+
+  //Toda vez que sofrer alterações podemos vetar a renderização
+  shouldComponentUpdate = (nextProps, nextState) => {};
+
+  //Depois de ter efetuado a alteração/atualização do estado.
+  componentDidUpdate = (prevProps, prevState) => {};
+
   handleClick = () => {
     //o SetState é assincrona então ele leva um tempo para ser efetuado
     // this.setState({ counter: this.state.counter + 1 });
