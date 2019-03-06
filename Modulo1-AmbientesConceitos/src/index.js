@@ -1,29 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { render } from "react-dom";
-import PropTypes from "prop-types";
-
-class Button extends Component {
-  static defaultProps = {
-    children: "Salvar"
-  };
-
-  static propTypes = {
-    onClick: PropTypes.func.isRequired,
-    children: PropTypes.string
-  };
-
-  render() {
-    return (
-      <button
-        href=""
-        onClick={this.props.onClick}
-        style={{ background: "#673AB7" }}
-      >
-        {this.props.children}
-      </button>
-    );
-  }
-}
+import Button from "./Button";
 
 class App extends Component {
   state = {
@@ -38,7 +15,7 @@ class App extends Component {
     /* 
       Desta forma o state passado como parametro é alterado automaticamente.
     */
-    this.setState(state => ({ counter: state.counter + 1 }));
+    this.setState(state => ({ counter: this.state.counter + 1 }));
   };
 
   render() {
