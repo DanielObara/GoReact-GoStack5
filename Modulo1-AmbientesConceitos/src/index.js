@@ -10,16 +10,16 @@ class App extends Component {
 
   //Executa na inicialização do componente
   //Ideal para consulta API e EventListners
-  componentDidMount() {}
+  // componentDidMount() {}
 
-  //Contrario do DidMount, ideal para limpar os eventListners etc.
-  componentWillUnmount = () => {};
+  // //Contrario do DidMount, ideal para limpar os eventListners etc.
+  // componentWillUnmount = () => {};
 
-  //Toda vez que sofrer alterações podemos vetar a renderização
-  shouldComponentUpdate = (nextProps, nextState) => {};
+  // //Toda vez que sofrer alterações podemos vetar a renderização
+  // shouldComponentUpdate = (nextProps, nextState) => {};
 
-  //Depois de ter efetuado a alteração/atualização do estado.
-  componentDidUpdate = (prevProps, prevState) => {};
+  // //Depois de ter efetuado a alteração/atualização do estado.
+  // componentDidUpdate = (prevProps, prevState) => {};
 
   handleClick = () => {
     //o SetState é assincrona então ele leva um tempo para ser efetuado
@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <Fragment>
         <h1>Hello World</h1>
-        <h2>{this.state.counter}</h2>
+        <h2 style={{ color: "#f00" }}>{this.state.counter}</h2>
         <Button onClick={this.handleClick}>Somar</Button>
       </Fragment>
     );
