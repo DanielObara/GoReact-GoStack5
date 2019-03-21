@@ -18,10 +18,12 @@ export const Form = styled.form`
 		height: 55px;
 		padding: 0 20px;
 		background: #fff;
-		border: 0;
 		font-size: 18px;
 		color: #444;
 		border-radius: 3px;
+
+		/* Essa propriedade withError vem do atributo do formulário <Form withError={repositoryError} */
+		border: ${props => (props.withError ? "2px solid #F00" : 0)};
 	}
 	button {
 		height: 55px;
