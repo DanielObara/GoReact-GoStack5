@@ -1,36 +1,47 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as FavoritesActions from "../../store/actions/favorites";
 
-const Main = ({ favorites, addFavorite, removeFavorite }) => {
-	function _handleSubmit(e) {
-		e.preventDefault();
-		addFavorite();
-	}
-	return (
-		<Fragment>
-			{/* <form onSubmit={this._handleSubmit()}> */}
-			<input type="text" />
-			<button onClick={e => _handleSubmit(e)} type="submit">
-				Favoritar
-			</button>
-			{/* </form> */}
+class Main extends Component {
+	state = {
+		repositoryInput: ""
+	};
 
-			<ul>
-				{favorites.map(favorite => (
-					<li key={favorite.id}>
-						<p>
-							<strong>{favorite.title}</strong>({favorite.description})
-						</p>
-						<a href={favorite.url}>Acessar</a>
-						<button onClick={() => removeFavorite(favorite.id)}>Excluir</button>
-					</li>
-				))}
-			</ul>
-		</Fragment>
-	);
-};
+	_handleSubmit(e) {
+		e.preventDefault();
+		this.props.addFavorite();
+	}
+	render() {
+		const { favorites, removeFavorite } = this.props;
+		return (
+			<Fragment>
+				<form onSubmit={e => this._handleSubmit(e)}>
+					<input
+						type="text"
+						value={this.state.repositoryInput}
+						onChange={e => this.setState({ repositoryInput: e.target.value })}
+					/>
+					<button type="submit">Favoritar</button>
+				</form>
+
+				<ul>
+					{favorites.map(favorite => (
+						<li key={favorite.id}>
+							<p>
+								<strong>{favorite.title}</strong>({favorite.description})
+							</p>
+							<a href={favorite.url}>Acessar</a>
+							<button onClick={() => removeFavorite(favorite.id)}>
+								Excluir
+							</button>
+						</li>
+					))}
+				</ul>
+			</Fragment>
+		);
+	}
+}
 
 const mapDispatchToProps = dispatch =>
 	bindActionCreators(FavoritesActions, dispatch);
