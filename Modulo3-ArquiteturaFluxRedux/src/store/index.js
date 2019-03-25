@@ -3,7 +3,7 @@ import { createStore, compose, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 //Importando os reducers que serão responsáveis por evoluir a store.
-import reducers from "./reducers";
+import reducers from "./ducks";
 
 import sagas from "./sagas/";
 

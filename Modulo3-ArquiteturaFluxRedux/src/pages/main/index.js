@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as FavoritesActions from "../../store/actions/favorites";
+import { Creators as FavoriteActions } from "../../store/ducks/favorites";
 
 class Main extends Component {
 	state = {
@@ -11,14 +11,9 @@ class Main extends Component {
 	_handleSubmit(e) {
 		e.preventDefault();
 		this.props.addFavoriteRequest(this.state.repositoryInput);
+		this.setState({ repositoryInput: "" });
 	}
 
-	removeFavoriteClick(id) {
-		console.log("TCL: Main -> removeFavoriteClick -> id", id);
-		const { removeFavorite } = this.props;
-
-		removeFavorite(id);
-	}
 	render() {
 		const { removeFavorite, favorites } = this.props;
 		console.log("TCL: Main -> render -> loading", favorites.loading);
@@ -33,6 +28,9 @@ class Main extends Component {
 					<button type="submit">Favoritar</button>
 
 					{favorites.loading && <span>Carregando....</span>}
+					{!!favorites.error && (
+						<span style={{ color: "#f00" }}>{favorites.error}</span>
+					)}
 				</form>
 
 				<ul>
@@ -42,7 +40,7 @@ class Main extends Component {
 								<strong>{favorite.name}</strong>({favorite.description})
 							</p>
 							<a href={favorite.url}>Acessar</a>
-							<button onClick={() => this.removeFavoriteClick(favorite.id)}>
+							<button onClick={() => removeFavorite(favorite.id)}>
 								Excluir
 							</button>
 						</li>
@@ -54,7 +52,7 @@ class Main extends Component {
 }
 
 const mapDispatchToProps = dispatch =>
-	bindActionCreators(FavoritesActions, dispatch);
+	bindActionCreators(FavoriteActions, dispatch);
 
 const mapStateToProps = state => ({
 	favorites: state.favorites
